@@ -1,19 +1,41 @@
+<template>
+  <div
+    ref="table"
+    class="tabulator"
+  />
+</template>
+
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import Tabulator from 'tabulator-tables';
+
+interface State {
+  tabulatorInstance: Tabulator | null;
+}
 
 export default defineComponent({
   name: 'TabulatorComponent',
   props: {
     options: {
-      type: Tabulator.prototype.options,
+      type: Object as PropType<Tabulator.Options>,
       required: false,
     },
     modelValue: Object,
-    data: {
+    data1: {
       type: Object,
       required: false,
-    },
-  },  
+    },   
+  },
+  data: (): State => {
+    return { tabulatorInstance: null }
+  },
+  methods: {
+    createTable(): void {
+      this.tabulatorInstance = new Tabulator(
+        (this.$refs.table as HTMLElement),
+        this.options
+      );
+    }
+  },
 });
 </script>
