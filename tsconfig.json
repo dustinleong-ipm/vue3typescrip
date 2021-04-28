@@ -11,7 +11,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "typeRoots": ["./types", "./node_modules/@types"],
+    //"typeRoots": ["./types", "./node_modules/@types"],
     "types": [
       "webpack-env"
     ],
@@ -36,6 +36,6 @@
   ],
   "exclude": [
     "node_modules",
-    "typings"
+    //"typings"
   ]
 }
