@@ -6,7 +6,7 @@ export default defineComponent({
   name: 'TabulatorComponent',
   props: {
     options: {
-      type: Tabulator.Options,
+      type: Tabulator.prototype.options,
       required: false,
     },
     modelValue: Object,
