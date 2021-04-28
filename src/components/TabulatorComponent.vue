@@ -14,6 +14,6 @@ export default defineComponent({
       type: Object,
       required: false,
     },
-  },
+  },  
 });
 </script>
