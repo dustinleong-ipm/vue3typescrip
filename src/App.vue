@@ -15,45 +15,36 @@
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue';
 import VueTabulator from '@/components/TabulatorComponent.vue'
+import Tabulator from 'tabulator-tables';
 
 export default defineComponent({
   name: 'App',
   components: {
     VueTabulator
   },
-  setup(){
+  data()  {
     const columns = [{
       title: 'Name',
       field: 'name',
-      sorter: 'string',
+      Sorter: 'string',
       width: 200,
-      editor: true,
+      Editor: true,
     },];
     const data = [{ name: 'Teste', age: 13 }];
-    const options = null;
     const vm = this;
-    /**
-    get columns() {
-          return this.columns;
-        },
-    set columns(value1: Array) {
-          this.columns=value1:;
-    }**/
+    const options: Tabulator.Options
+    = {
+        columns: columns,
+        rowClick(e: Event, row: Tabulator.RowComponent) {
+        console.log('I clicked a row', vm, e, row);        
+      },
+        
+      };    
     return {
       columns,data,options,vm
     }
   },
-  methods: {
-  get options(): PropType<Tabulator.Options> {
-            
-      return {
-        columns: columns,
-        rowClick(e: Event, row: Tabulator.RowComponent) {
-          console.log('I clicked a row', vm, e, row);          
-        },
-      };
-    }
-  
+  methods: {   
   },
 });
 </script>
