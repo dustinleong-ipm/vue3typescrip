@@ -34,10 +34,10 @@ export default defineComponent({
      */
     const dog='dog'
     const optionsData = ref(props.options)
-
-    
-   
-    //console.log(props.modelValue)
+    console.log('data phrase')
+    console.log(optionsData)
+    console.log(props.options)
+    console.log(props.modelValue)
     return{
       optionsData,dog //tabulatorInstance//,vm
     }
@@ -56,13 +56,24 @@ export default defineComponent({
       tabulatorInstance
     }
   },**/
-  mounted(): void{
-    const optionsData1 = ref(this.options)
-    watch(optionsData1, (optionsData1, prevoptionsData1): void => { 
-      /* ... */ 
+  beforeCreate(): void{
+    console.log('before create phrase')
+    //const optionsData1 = ref(this.options)
+    console.log(this.optionsData)   
+    //watch(optionsData1, (optionsData1, prevoptionsData1): void => {   
+    //  console.log('trigger')
+    //  this.createTable();
+    //})
+    
+  },
+  mounted(){
+    this.createTable()
+  },
+  watch: {
+    optionsData(newOptionsData,oldOptionsData){
       console.log('trigger')
       this.createTable();
-    })
+    }
   },
   methods: {    
     createTable(){
@@ -70,7 +81,7 @@ export default defineComponent({
       console.log(this.$refs.table)
       const tabulatorInstance = new Tabulator(
         (this.$refs.table as HTMLElement),
-        this.options
+        this.optionsData
       );
       console.log(this.options)
       console.log('2')
