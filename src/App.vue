@@ -8,6 +8,18 @@
       v-model="data"
       :options="options"
     />
+    <button
+      id="row"
+      @click="newRow"
+    >new row
+    </button>
+
+    <button
+      id="column"
+      @click="newColumn"
+    >
+      New Column
+    </button>
   </div>
   <router-view/>
 </template>
@@ -26,9 +38,9 @@ export default defineComponent({
     const columns = [{
       title: 'Name',
       field: 'name',
-      Sorter: 'string',
+      //Sorter: 'string',
       width: 200,
-      Editor: true,
+      //Editor: true,
     },];
     const data = [{ name: 'Teste', age: 13 }];
     const vm = this;
@@ -44,7 +56,20 @@ export default defineComponent({
       columns,data,options,vm
     }
   },
-  methods: {   
+  methods: {
+    newRow() {
+    console.log('new row')
+    this.data.push({ name: 'Teste 2', age: 15 });
+    },
+    newColumn() {    
+    this.options.columns?.push({
+      title: 'age',
+      field: 'age',
+      //sorter: 'number',
+      width: 300,
+      //editor: false,
+    });
+  }
   },
 });
 </script>
